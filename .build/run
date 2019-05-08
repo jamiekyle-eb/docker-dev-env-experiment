@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+set -f # disable automatic globbing
+
+CI=${CI:-false}
+ARGS=${*:2}
+
+[ "$CI" == "true" ] && echo "--- :docker: building $1"
+
+if [ "$CI" == "true" ]; then
+  docker build -f "./.build/$1/Dockerfile" -t "$1" .
+else
+  docker build -q -f "./.build/$1/Dockerfile" -t "$1" . > /dev/null
+fi
+
+[ "$CI" == "true" ] && echo "+++ :docker: running $1"
+
+# shellcheck disable=SC2086
+docker run --rm -it -v "$PWD:/workdir" "$1" $ARGS

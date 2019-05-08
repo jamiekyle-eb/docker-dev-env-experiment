@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+cd "./.build/$1/"
+npm install --package-lock-only

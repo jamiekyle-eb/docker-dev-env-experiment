@@ -1,0 +1,7 @@
+steps:
+  - label: ":eslint: lint/eslint"
+    command: .build/run eslint
+  - label: ":bash: lint/shellcheck"
+    command: .build/run shellcheck
+  - label: ":prettier: format/prettier"
+    command: .build/run prettier --check "**"

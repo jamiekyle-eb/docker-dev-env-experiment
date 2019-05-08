@@ -1,0 +1,9 @@
+*Dockerfile
+*.sh
+.*ignore
+*.toml
+*.lock
+*.log
+package-lock.json
+.build/run
+.build/update
